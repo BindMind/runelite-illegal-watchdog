@@ -64,10 +64,6 @@ public abstract class Notification implements INotification {
     }
 
     public boolean shouldFire() {
-        if (WatchdogPlugin.getInstance().isInBannedArea()) {
-            return false;
-        }
-
         int afkTime = (int)Math.floor(Math.min(client.getKeyboardIdleTicks(), client.getMouseIdleTicks()) * Constants.CLIENT_TICK_LENGTH / 1000f);
         if (this.fireWhenAFK && afkTime < this.fireWhenAFKForSeconds) {
             return false;
